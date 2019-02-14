@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         button1 = (Button) findViewById(R.id.button1);
         text1 = (TextView) findViewById(R.id.textView1);
-        button1.setText("kliknij mnie!");
+        button1.setText("kliknij mnie");
         text1.setTextColor(Color.BLUE);
         text1.setText("Niebieski napis");
     }
