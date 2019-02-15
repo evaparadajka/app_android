@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">aplikacja3</string>
-    <string name="hello">hello world 123</string>
-    <string name="kliknij">kliknij mnie</string>
+    <string name="title">Zabawa w klikanie przycisku</string>
+    <string name="button1">Kliknij mnie!</string>
+    <string name="button_say">AAA nie klikaj!</string>
+    <string name="before_action">Nie kliknięto przycisku</string>
+    <string name="after_action">Przycisk kliknięty: </string>
 </resources>
