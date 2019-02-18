@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public void OnButton1Click(View v){
         Toast.makeText(getApplicationContext(), getString(R.string.button_say), Toast.LENGTH_SHORT).show();
         btn_cnt = btn_cnt + 1;
-        text1.setTextColor(Color.GREEN);
+        text1.setTextColor(getColor(R.color.good));
         text1.setText(getString(R.string.after_action)+btn_cnt);
     }
 
@@ -29,6 +29,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         button1 = (Button) findViewById(R.id.button1);
         text1 = (TextView) findViewById(R.id.textView1);
-        text1.setTextColor(Color.RED);
     }
 }

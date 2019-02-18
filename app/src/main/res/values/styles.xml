@@ -8,4 +8,36 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:textColor">@color/buttons_texts</item>
+        <item name="android:background">@color/buttons</item>
+    </style>
+
+    <style name="title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/texts</item>
+    </style>
+
+    <style name="caption">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/texts</item>
+    </style>
 </resources>
