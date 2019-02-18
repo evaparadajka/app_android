@@ -5,4 +5,6 @@
     <string name="button_say">AAA nie klikaj!</string>
     <string name="before_action">Nie kliknięto przycisku</string>
     <string name="after_action">Przycisk kliknięty: </string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="autor">O autorze</string>
 </resources>
