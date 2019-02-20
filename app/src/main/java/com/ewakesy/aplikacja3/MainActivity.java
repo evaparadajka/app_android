@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     int btn_cnt=0;
 
     public void OnButton1Click(View v){
-        Toast.makeText(getApplicationContext(), getString(R.string.button_say), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), getString(R.string.button_say), Toast.LENGTH_SHORT).show();
         btn_cnt = btn_cnt + 1;
         text1.setTextColor(getColor(R.color.good));
         text1.setText(getString(R.string.after_action)+btn_cnt);
@@ -34,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
         switch(id){
             case R.id.action_setttings:
                 Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_settings), Toast.LENGTH_SHORT).show();
+                break;
             case R.id.action_autor:
                 Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.autor), Toast.LENGTH_SHORT).show();
+                break;
         }
         return true;
     }
