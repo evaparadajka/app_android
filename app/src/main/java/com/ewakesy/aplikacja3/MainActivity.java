@@ -13,17 +13,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button1;
-    TextView text1;
-    int btn_cnt=0;
-
-    public void OnButton1Click(View v){
-//        Toast.makeText(getApplicationContext(), getString(R.string.button_say), Toast.LENGTH_SHORT).show();
-        btn_cnt = btn_cnt + 1;
-        text1.setTextColor(getColor(R.color.good));
-        text1.setText(getString(R.string.after_action)+btn_cnt);
-    }
-
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
@@ -32,11 +21,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         int id=item.getItemId();
         switch(id){
-            case R.id.action_setttings:
+            case R.id.action_main:
+                Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_main), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_connections:
+                Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_connections), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.action_settings:
                 Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_settings), Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.action_autor:
-                Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.autor), Toast.LENGTH_SHORT).show();
+            case R.id.action_about:
+                Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_about), Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
@@ -46,7 +41,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button1 = (Button) findViewById(R.id.button1);
-        text1 = (TextView) findViewById(R.id.textView1);
     }
 }

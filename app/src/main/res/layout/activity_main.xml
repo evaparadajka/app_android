@@ -7,24 +7,88 @@
     android:background="@drawable/tlo"
     tools:context=".MainActivity">
 
-    <TextView
-        style="@style/title"
-        android:layout_marginTop="20dp"
-        android:text="@string/title" />
 
-    <Button
-        android:id="@+id/button1"
-        style="@style/button"
-        android:layout_marginTop="80dp"
-        android:onClick="OnButton1Click"
-        android:text="@string/button1" />
 
-    <TextView
-        android:id="@+id/textView1"
-        style="@style/caption"
-        android:layout_marginTop="140dp"
-        android:text="@string/before_action"
-        android:textColor="@color/bad" />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+            style="@style/title"
+            android:text="@string/action_main" />
+
+        <TextView
+            style="@style/subtitle"
+            android:text="@string/sub_light1" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <Button
+                    style="@style/button"
+                    android:text="@string/but_light_on" />
+                <Button
+                    style="@style/flag"
+                    android:layout_marginTop="20dp" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            style="@style/subtitle"
+            android:text="@string/sub_light2" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <Button
+                    style="@style/button"
+                    android:text="@string/but_light_on" />
+                <Button
+                    style="@style/flag" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            style="@style/subtitle"
+            android:text="@string/sub_heater" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <Button
+                    style="@style/button"
+                    android:text="@string/but_heat_on" />
+                <Button
+                    style="@style/flag" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    style="@style/caption"
+                    android:text="@string/cap_set_tem" />
+                <EditText
+                    style="@style/info" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    style="@style/caption"
+                    android:text="@string/cap_actual_tem" />
+                <TextView
+                    style="@style/info"
+                    android:text="22,2" />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -32,5 +96,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/logoweeia" />
 
 </RelativeLayout>
