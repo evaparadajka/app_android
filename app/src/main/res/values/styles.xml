@@ -49,6 +49,7 @@
     </style>
 
     <style name="caption">
+        <item name="android:layout_marginTop">20dp</item>
         <item name="android:paddingLeft">20dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -57,6 +58,7 @@
     </style>
 
     <style name="info">
+        <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxWidth">40dp</item>
         <item name="android:maxHeight">40dp</item>
@@ -65,11 +67,22 @@
     </style>
 
     <style name="arrows">
+        <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:layout_width">30dp</item>
         <item name="android:rotation">90</item>
+    </style>
+
+    <style name="settings_option">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">220dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/texts</item>
     </style>
 
 </resources>

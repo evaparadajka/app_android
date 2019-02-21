@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
 
 import java.text.NumberFormat;
 
@@ -58,16 +59,18 @@ public class MainActivity extends AppCompatActivity {
         int id=item.getItemId();
         switch(id){
             case R.id.action_main:
-                Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_main), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_connections:
-                Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_connections), Toast.LENGTH_SHORT).show();
+                Intent ic = new Intent(this, Bluetooth.class);
+                startActivity(ic);
                 break;
             case R.id.action_settings:
-                Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_settings), Toast.LENGTH_SHORT).show();
+                Intent is = new Intent(this, Settings.class);
+                startActivity(is);
                 break;
             case R.id.action_about:
-                Toast.makeText(getApplicationContext(), "Kliknięto: "+getString(R.string.action_about), Toast.LENGTH_SHORT).show();
+                Intent ia = new Intent(this, About.class);
+                startActivity(ia);
                 break;
         }
         return true;

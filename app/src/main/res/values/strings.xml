@@ -18,6 +18,8 @@
     <string name="sub_light1">światło pokój nr 1</string>
     <string name="sub_light2">światło pokoj nr 2</string>
     <string name="sub_heater">ogrzewanie</string>
+    <string name="sub_main">ogólne</string>
+    <string name="sub_controler">regulator</string>
 
     <!-- smart house buttons -->
     <string name="but_light_on">włącz światło</string>
@@ -28,5 +30,9 @@
     <!-- smart house captions -->
     <string name="cap_set_tem">temperatura: </string>
     <string name="cap_actual_tem">aktualna: </string>
+    <string name="cap_language">język</string>
+    <string name="cap_kp">wzmocnienie</string>
+    <string name="cap_ti">częsć całkująca</string>
+    <string name="cap_td">część różniczkująca</string>
 
 </resources>
