@@ -11,7 +11,6 @@ import android.widget.Toast;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
-
 import java.text.NumberFormat;
 
 
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         light1=(Button)findViewById(R.id.btn_light1);
         light1_state=(Button)findViewById(R.id.btn_light1_state);
         light2=(Button)findViewById(R.id.btn_light2);
@@ -134,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
         nf.setMaximumFractionDigits(1);
         nf.setMinimumFractionDigits(1);
         String str = nf.format(temp_d);
-        Log.d("temperatura", "setTemperature: " + temp_d);
         set_temp.setText(str);
     }
 }

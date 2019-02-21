@@ -24,7 +24,7 @@
     <!-- smart house buttons -->
     <string name="but_light_on">włącz światło</string>
     <string name="but_light_off">zgaś światło</string>
-    <string name="but_heat_on">włacz ogrzewanie</string>
+    <string name="but_heat_on">włącz ogrzewanie</string>
     <string name="but_heat_off">wyłącz ogrzewanie</string>
 
     <!-- smart house captions -->
