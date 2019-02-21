@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import java.text.NumberFormat;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
     TextView get_temp;
 
     /****** FLOW VARIABLES ******/
-    boolean light1_state_b=false;
-    boolean light2_state_b=false;
-    boolean heat_state_b=false;
-    float temp_d=(float)20.5;
-    float temp_a=(float)22.1;
+//    boolean light1_state_b=false;
+//    boolean light2_state_b=false;
+//    boolean heat_state_b=false;
+//    float temp_d=(float)20.5;
+//    float temp_a=(float)22.1;
 
     /****** ON CREATE ******/
     @Override
@@ -47,6 +48,67 @@ public class MainActivity extends AppCompatActivity {
         heat_state=(Button)findViewById(R.id.btn_heat_state);
         set_temp=(TextView)findViewById(R.id.text_set_temp);
         get_temp=(TextView)findViewById(R.id.text_get_temp);
+
+        checkDatabase();
+    }
+
+    /****** DATABASE? ******/
+    public void checkDatabase(){
+        Database db = new Database(this);
+        List<State>  states = db.getByName("light1_state_b");
+        if(states.isEmpty()){
+
+            State state = new State();
+
+            state.setName("light1_state_b");
+            state.setValue(Boolean.toString(false));
+            db.addVariable(state);
+
+            state.setName("light2_state_b");
+            state.setValue(Boolean.toString(false));
+            db.addVariable(state);
+
+            state.setName("heat_state_b");
+            state.setValue(Boolean.toString(false));
+            db.addVariable(state);
+
+            state.setName("temp_d");
+            state.setValue(Float.toString((float) 20.5));
+            db.addVariable(state);
+
+            state.setName("temp_a");
+            state.setValue(Float.toString((float) 22.1));
+            db.addVariable(state);
+        } else {
+            states.clear();
+            states = db.getByName("light1_state_b");
+            if(db.getByName("light1_state_b").get(0).getValue().contains("true")){
+                light1.setText(getString(R.string.but_light_off));
+                light1_state.setBackgroundColor(getColor(R.color.good));
+            }
+
+            states.clear();
+            states = db.getByName("light2_state_b");
+            if(states.get(0).getValue().contains("true")){
+                light2.setText(getString(R.string.but_light_off));
+                light2_state.setBackgroundColor(getColor(R.color.good));
+            }
+
+            states.clear();
+            states = db.getByName("heat_state_b");
+            if(states.get(0).getValue().contains("true")){
+                heat.setText(getString(R.string.but_heat_off));
+                heat_state.setBackgroundColor(getColor(R.color.good));
+            }
+
+            states.clear();
+            states = db.getByName("temp_d");
+            set_temp.setText(states.get(0).getValue());
+
+            states.clear();
+            states = db.getByName("temp_a");
+            get_temp.setText(states.get(0).getValue());
+        }
     }
 
     /****** MENU ******/
@@ -78,44 +140,60 @@ public class MainActivity extends AppCompatActivity {
 
     /****** ON CLICK METHODS ******/
     public void switchOnOff(View v){
+        Database db = new Database(this);
+        List<State> states;
+        State state;
         switch(v.getId()){
             case R.id.btn_light1:
-                if(light1_state_b){
+                states = db.getByName("light1_state_b");
+                if(states.get(0).getValue().contains("true")){
                     light1.setText(getString(R.string.but_light_on));
                     light1_state.setBackgroundColor(getColor(R.color.bad));
-                    light1_state_b = false;
+                    states.get(0).setValue(Boolean.toString(false));
+                    db.modifyVariable(states.get(0));
                 }else{
                     light1.setText(getString(R.string.but_light_off));
                     light1_state.setBackgroundColor(getColor(R.color.good));
-                    light1_state_b=true;
+                    states.get(0).setValue(Boolean.toString(true));
+                    db.modifyVariable(states.get(0));
                 }
                 break;
             case R.id.btn_light2:
-                if(light2_state_b){
+                states = db.getByName("light2_state_b");
+                if(states.get(0).getValue().contains("true")){
                     light2.setText(getString(R.string.but_light_on));
                     light2_state.setBackgroundColor(getColor(R.color.bad));
-                    light2_state_b = false;
+                    states.get(0).setValue(Boolean.toString(false));
+                    db.modifyVariable(states.get(0));
                 }else{
                     light2.setText(getString(R.string.but_light_off));
                     light2_state.setBackgroundColor(getColor(R.color.good));
-                    light2_state_b=true;
+                    states.get(0).setValue(Boolean.toString(true));
+                    db.modifyVariable(states.get(0));
                 }
                 break;
             case R.id.btn_heat:
-                if(heat_state_b){
+                states = db.getByName("heat_state_b");
+                if(states.get(0).getValue().contains("true")){
                     heat.setText(getString(R.string.but_heat_on));
                     heat_state.setBackgroundColor(getColor(R.color.bad));
-                    heat_state_b = false;
+                    states.get(0).setValue(Boolean.toString(false));
+                    db.modifyVariable(states.get(0));
                 }else{
                     heat.setText(getString(R.string.but_heat_off));
                     heat_state.setBackgroundColor(getColor(R.color.good));
-                    heat_state_b=true;
+                    states.get(0).setValue(Boolean.toString(true));
+                    db.modifyVariable(states.get(0));
                 }
                 break;
         }
     }
 
     public void setTemperature(View v){
+        Database db = new Database(this);
+        List<State> states = db.getByName("temp_d");
+        State state = states.get(0);
+        float temp_d = Float.parseFloat(state.getValue());
         switch(v.getId()){
             case R.id.arrow_up:
                 temp_d = temp_d + (float)0.1;
@@ -134,6 +212,10 @@ public class MainActivity extends AppCompatActivity {
         nf.setMaximumFractionDigits(1);
         nf.setMinimumFractionDigits(1);
         String str = nf.format(temp_d);
+        str = str.replace(",", ".");
         set_temp.setText(str);
+        state.setValue(str);
+        db.modifyVariable(state);
     }
+
 }

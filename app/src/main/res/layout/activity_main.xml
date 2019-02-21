@@ -131,7 +131,7 @@
                     <TextView
                         android:id="@+id/text_get_temp"
                         style="@style/info"
-                        android:text="22,2" />
+                        android:text="22.2" />
                 </TableRow>
             </TableLayout>
 
