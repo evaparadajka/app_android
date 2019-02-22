@@ -5,25 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/tlo"
-    tools:context=".MainActivity">
+    tools:context=".Bluetooth">
 
-
-    <ScrollView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="110dp">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <TextView
+            style="@style/title"
+            android:text="@string/action_connections" />
 
-            <TextView
-                style="@style/title"
-                android:text="@string/action_connections" />
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        </LinearLayout>
-    </ScrollView>
+            <TableRow>
+
+                <Button
+                    android:id="@+id/btn_show"
+                    style="@style/button"
+                    android:layout_width="150dp"
+                    android:onClick="showKnownDevices"
+                    android:text="@string/but_show" />
+
+                <Button
+                    android:id="@+id/btn_search"
+                    style="@style/button"
+                    android:layout_width="150dp"
+                    android:onClick="searchDevices"
+                    android:text="@string/but_search" />
+
+            </TableRow>
+        </TableLayout>
+
+        <ListView
+            android:id="@+id/list_devices"
+            style="@style/subtitle"
+            android:paddingLeft="0dp"
+            android:layout_marginBottom="110dp"/>
+
+    </LinearLayout>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

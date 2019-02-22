@@ -26,6 +26,8 @@
     <string name="but_light_off">zgaś światło</string>
     <string name="but_heat_on">włącz ogrzewanie</string>
     <string name="but_heat_off">wyłącz ogrzewanie</string>
+    <string name="but_show">pokaż znane urządzenia</string>
+    <string name="but_search">szukaj nowe urządzenia</string>
 
     <!-- smart house captions -->
     <string name="cap_set_tem">temperatura: </string>
@@ -35,4 +37,6 @@
     <string name="cap_ti">częsć całkująca</string>
     <string name="cap_td">część różniczkująca</string>
 
+    <!-- smart house info and warnings -->
+    <string name="war_dev_not_found">No Paired Bluetooth Devices Found.</string>
 </resources>
