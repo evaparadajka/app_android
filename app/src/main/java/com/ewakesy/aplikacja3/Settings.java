@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+//TODO: enable language change
+//TODO: enable controller setups
+
 public class Settings extends AppCompatActivity {
 
     /****** ON CREATE ******/

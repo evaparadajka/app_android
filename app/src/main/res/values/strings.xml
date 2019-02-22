@@ -37,6 +37,12 @@
     <string name="cap_ti">częsć całkująca</string>
     <string name="cap_td">część różniczkująca</string>
 
-    <!-- smart house info and warnings -->
-    <string name="war_dev_not_found">No Paired Bluetooth Devices Found.</string>
+    <!-- smart house info and warnings and errors -->
+    <string name="war_dev_not_found">Nie znaleziono urządzeń.</string>
+    <string name="war_connection_failed">Nie udało się połączyć</string>
+    <string name="info_connection_success">Połączono</string>
+    <string name="info_connecting">łączenie...</string>
+    <string name="info_wait">poczekaj chwilę</string>
+    <string name="error">wystąpił błąd</string>
+
 </resources>

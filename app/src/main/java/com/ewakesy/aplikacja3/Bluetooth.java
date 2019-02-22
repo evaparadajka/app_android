@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -33,6 +34,7 @@ public class Bluetooth extends AppCompatActivity {
     Button show;
     ListView devices;
 
+    /****** FLOW VARIABLES ******/
     private Set<BluetoothDevice> pairedDevices;
 
     /****** ON CREATE ******/
@@ -60,10 +62,11 @@ public class Bluetooth extends AppCompatActivity {
         }
     }
 
+    //TODO: fix this method
+    //TODO: on the end of this method call listDevices()
     private final BroadcastReceiver receiver= new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent i) {
-            Log.d("AAA", "searchDevices: ");
             String action = i.getAction();
             if(BluetoothDevice.ACTION_FOUND.equals(action)){
                 BluetoothDevice device = i.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -106,6 +109,7 @@ public class Bluetooth extends AppCompatActivity {
     }
 
     /****** ON CLICK METHODS ******/
+    //TODO: fix this method
     public void searchDevices(View v){
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_FOUND);
@@ -117,12 +121,15 @@ public class Bluetooth extends AppCompatActivity {
         }
 
         blue.startDiscovery();
-        Log.d("AAA", "bluetooth" + blue);
     }
 
     public void showKnownDevices(View v){
         BluetoothAdapter blue = BluetoothAdapter.getDefaultAdapter();
         pairedDevices = blue.getBondedDevices();
+        listDevices();
+    }
+
+    public void listDevices(){
         ArrayList list = new ArrayList();
 
         if (pairedDevices.size()>0)
@@ -142,6 +149,8 @@ public class Bluetooth extends AppCompatActivity {
         devices.setOnItemClickListener(myListClickListener); //Method called when the device from the list is clicked
     }
 
+    //TODO: if device is not paired call method pairDevice
+    //TODO: create method pairDevice
     private AdapterView.OnItemClickListener myListClickListener = new AdapterView.OnItemClickListener()
     {
         public void onItemClick (AdapterView<?> av, View v, int arg2, long arg3)
@@ -150,13 +159,23 @@ public class Bluetooth extends AppCompatActivity {
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
 
-            // Make an intent to start next activity.
-//            Intent i = new Intent(Bluetooth.this, MainActivity.class);
-//
-//            //Change the activity.
-//            i.putExtra("BLUE_ADDRESS", address); //this will be received at ledControl (class) Activity
-//            startActivity(i);
-            Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
+            // Add address to database
+            Database db = new Database(getApplicationContext());
+            List<State> states = db.getByName("blue_address");
+            State state;
+            if(states.isEmpty()) {
+                state = new State();
+                state.setName("blue_address");
+                state.setValue(address);
+                db.addVariable(state);
+            } else {
+                state = states.get(0);
+                state.setValue(address);
+                db.modifyVariable(state);
+            }
+
+            Intent im = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(im);
         }
     };
 }

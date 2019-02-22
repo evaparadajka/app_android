@@ -1,6 +1,11 @@
 package com.ewakesy.aplikacja3;
 
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +16,11 @@ import android.widget.Toast;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
     TextView get_temp;
 
     /****** FLOW VARIABLES ******/
-//    boolean light1_state_b=false;
-//    boolean light2_state_b=false;
-//    boolean heat_state_b=false;
-//    float temp_d=(float)20.5;
-//    float temp_a=(float)22.1;
+    String address = null;
+    private ProgressDialog progress;
+    private boolean isBlueConnected = false;
+    BluetoothSocket blueSocket = null;
+    static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     /****** ON CREATE ******/
     @Override
@@ -50,6 +58,19 @@ public class MainActivity extends AppCompatActivity {
         get_temp=(TextView)findViewById(R.id.text_get_temp);
 
         checkDatabase();
+        if(!getBlueAddress()){
+            Intent ic = new Intent(this, Bluetooth.class);
+            startActivity(ic);
+        }
+        getBlueConnectionState();
+        new ConnectBlue().execute();
+    }
+
+    /****** ON SAVE STATE ******/
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        blueDisconnect();
     }
 
     /****** DATABASE? ******/
@@ -78,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
             state.setName("temp_a");
             state.setValue(Float.toString((float) 22.1));
+            db.addVariable(state);
+
+            state.setName("is_connected");
+            state.setValue(Boolean.toString(false));
             db.addVariable(state);
         } else {
             states.clear();
@@ -151,11 +176,13 @@ public class MainActivity extends AppCompatActivity {
                     light1_state.setBackgroundColor(getColor(R.color.bad));
                     states.get(0).setValue(Boolean.toString(false));
                     db.modifyVariable(states.get(0));
+                    turnOffLed();
                 }else{
                     light1.setText(getString(R.string.but_light_off));
                     light1_state.setBackgroundColor(getColor(R.color.good));
                     states.get(0).setValue(Boolean.toString(true));
                     db.modifyVariable(states.get(0));
+                    turnOnLed();
                 }
                 break;
             case R.id.btn_light2:
@@ -218,4 +245,96 @@ public class MainActivity extends AppCompatActivity {
         db.modifyVariable(state);
     }
 
+    /****** BLUETOOTH MAGIC ******/
+    private void msg(String s) {
+        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+    }
+
+    public boolean getBlueAddress(){
+        Database db = new Database(this);
+        List<State>  states = db.getByName("blue_address");
+        if(states.isEmpty()) {
+            return false;
+        }
+        address = states.get(0).getValue();
+        return true;
+    }
+
+    public void getBlueConnectionState(){
+        Database db = new Database(this);
+        List<State>  states = db.getByName("is_connected");
+        if(states.get(0).getValue().contains("true")){
+            isBlueConnected=true;
+        }
+    }
+
+    private void blueDisconnect() {
+        if (blueSocket!=null){ //If the btSocket is busy
+            try {
+                blueSocket.close(); //close connection
+            }
+            catch (IOException e) { msg(getString(R.string.error));}
+        }
+        finish(); //return to the first layout
+    }
+
+    private void turnOffLed() {
+        if (blueSocket!=null) {
+            try {
+                blueSocket.getOutputStream().write("0".toString().getBytes());
+            }
+            catch (IOException e) { msg(getString(R.string.error)); }
+        }
+    }
+
+    private void turnOnLed() {
+        if (blueSocket!=null){
+            try {
+                blueSocket.getOutputStream().write("1".toString().getBytes());
+            }
+            catch (IOException e) { msg(getString(R.string.error)); }
+        }
+    }
+
+    private class ConnectBlue extends AsyncTask<Void, Void, Void>{  // UI thread
+        private boolean ConnectSuccess = true; //if it's here, it's almost connected
+
+        @Override
+        protected void onPreExecute(){
+            progress = ProgressDialog.show(MainActivity.this, getString(R.string.info_connecting), getString(R.string.info_wait));  //show a progress dialog
+        }
+
+        @Override
+        protected Void doInBackground(Void... devices){ //while the progress dialog is shown, the connection is done in background
+            try {
+                if (blueSocket == null || !isBlueConnected) {
+                    BluetoothAdapter  blue = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
+                    BluetoothDevice dispositivo = blue.getRemoteDevice(address);//connects to the device's address and checks if it's available
+                    blueSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
+                    BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
+                    blueSocket.connect();//start connection
+                }
+            }
+            catch (IOException e) {
+                ConnectSuccess = false;//if the try failed, you can check the exception here
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result){ //after the doInBackground, it checks if everything went fine
+            super.onPostExecute(result);
+
+            if (!ConnectSuccess) {
+                Intent ic = new Intent(getApplicationContext(), Bluetooth.class);
+                startActivity(ic);
+                msg(getString(R.string.war_connection_failed));
+                finish();
+            }
+            else {
+                msg(getString(R.string.info_connection_success));
+                isBlueConnected = true;
+            }
+            progress.dismiss();
+        }
+    }
 }

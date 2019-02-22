@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.LinkedList;
 import java.util.List;
 
+//TODO: modify all methods that uses "state", so use table named by bluetooth device
 
 public class Database extends SQLiteOpenHelper{
 
