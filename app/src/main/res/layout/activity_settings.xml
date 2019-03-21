@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tlo"
+    tools:context=".Settings">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="110dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/title"
+                android:text="@string/action_settings" />
+
+            <TextView
+                style="@style/subtitle"
+                android:text="@string/sub_main" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <TextView
+                        style="@style/settings_option"
+                        android:text="@string/cap_language" />
+
+                    <TextView/>
+
+                    <TextView
+                        android:id="@+id/language"
+                        style="@style/settings_option"
+                        android:text="polski" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                style="@style/subtitle"
+                android:text="@string/sub_controler" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <TextView
+                        style="@style/settings_option"
+                        android:text="@string/cap_kp" />
+
+                    <ImageView
+                        android:id="@+id/arrow_down_kp"
+                        style="@style/arrows"
+                        app:srcCompat="@android:drawable/arrow_down_float" />
+
+                    <TextView
+                        android:id="@+id/text_kp"
+                        style="@style/info"
+                        android:text="10,0"
+                        android:inputType="numberSigned" />
+
+                    <ImageView
+                        android:id="@+id/arrow_up_kp"
+                        style="@style/arrows"
+                        app:srcCompat="@android:drawable/arrow_up_float" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        style="@style/settings_option"
+                        android:text="@string/cap_ti" />
+
+                    <ImageView
+                        android:id="@+id/arrow_down_ti"
+                        style="@style/arrows"
+                        app:srcCompat="@android:drawable/arrow_down_float" />
+
+                    <TextView
+                        android:id="@+id/text_ti"
+                        style="@style/info"
+                        android:text="10,0"
+                        android:inputType="numberSigned" />
+
+                    <ImageView
+                        android:id="@+id/arrow_up_ti"
+                        style="@style/arrows"
+                        app:srcCompat="@android:drawable/arrow_up_float" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        style="@style/settings_option"
+                        android:text="@string/cap_td" />
+
+                    <ImageView
+                        android:id="@+id/arrow_down_td"
+                        style="@style/arrows"
+                        app:srcCompat="@android:drawable/arrow_down_float" />
+
+                    <TextView
+                        android:id="@+id/text_set_temp"
+                        style="@style/info"
+                        android:text="10,0"
+                        android:inputType="numberSigned" />
+
+                    <ImageView
+                        android:id="@+id/arrow_up_td"
+                        style="@style/arrows"
+                        app:srcCompat="@android:drawable/arrow_up_float" />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/logoweeia" />
+
+</RelativeLayout>

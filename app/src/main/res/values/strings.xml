@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Arduino Smart House</string>
+
+    <!-- old ones -->
+    <string name="title">Zabawa w klikanie przycisku</string>
+    <string name="button1">Kliknij mnie!</string>
+    <string name="button_say">AAA nie klikaj!</string>
+    <string name="before_action">Nie kliknięto przycisku</string>
+    <string name="after_action">Przycisk kliknięty: </string>
+
+    <!-- menu options -->
+    <string name="action_main">Sterowanie</string>
+    <string name="action_connections">Bluetooth</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="action_about">Informacje</string>
+
+    <!-- smart house subtitles -->
+    <string name="sub_light1">światło pokój nr 1</string>
+    <string name="sub_light2">światło pokoj nr 2</string>
+    <string name="sub_heater">ogrzewanie</string>
+    <string name="sub_main">ogólne</string>
+    <string name="sub_controler">regulator</string>
+
+    <!-- smart house buttons -->
+    <string name="but_light_on">włącz światło</string>
+    <string name="but_light_off">zgaś światło</string>
+    <string name="but_heat_on">włącz ogrzewanie</string>
+    <string name="but_heat_off">wyłącz ogrzewanie</string>
+    <string name="but_show">pokaż znane urządzenia</string>
+    <string name="but_search">szukaj nowe urządzenia</string>
+
+    <!-- smart house captions -->
+    <string name="cap_set_tem">temperatura: </string>
+    <string name="cap_actual_tem">aktualna: </string>
+    <string name="cap_language">język</string>
+    <string name="cap_kp">wzmocnienie</string>
+    <string name="cap_ti">częsć całkująca</string>
+    <string name="cap_td">część różniczkująca</string>
+
+    <!-- smart house info and warnings and errors -->
+    <string name="war_dev_not_found">Nie znaleziono urządzeń.</string>
+    <string name="war_connection_failed">Nie udało się połączyć</string>
+    <string name="info_connection_success">Połączono</string>
+    <string name="info_connecting">łączenie...</string>
+    <string name="info_wait">poczekaj chwilę</string>
+    <string name="error">wystąpił błąd</string>
+
+</resources>

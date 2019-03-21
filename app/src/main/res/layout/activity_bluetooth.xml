@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tlo"
+    tools:context=".Bluetooth">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/title"
+            android:text="@string/action_connections" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/btn_show"
+                    style="@style/button"
+                    android:layout_width="150dp"
+                    android:onClick="showKnownDevices"
+                    android:text="@string/but_show" />
+
+                <Button
+                    android:id="@+id/btn_search"
+                    style="@style/button"
+                    android:layout_width="150dp"
+                    android:onClick="searchDevices"
+                    android:text="@string/but_search" />
+
+            </TableRow>
+        </TableLayout>
+
+        <ListView
+            android:id="@+id/list_devices"
+            style="@style/subtitle"
+            android:paddingLeft="0dp"
+            android:layout_marginBottom="110dp"/>
+
+    </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/logoweeia" />
+
+</RelativeLayout>

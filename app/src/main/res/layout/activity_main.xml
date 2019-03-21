@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tlo"
+    tools:context=".MainActivity">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="110dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/title"
+                android:text="@string/action_main" />
+
+            <TextView
+                style="@style/subtitle"
+                android:text="@string/sub_light1" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/btn_light1"
+                        style="@style/button"
+                        android:onClick="switchOnOff"
+                        android:text="@string/but_light_on" />
+
+                    <TextView style="@style/arrows"/>
+
+                    <Button
+                        android:id="@+id/btn_light1_state"
+                        style="@style/flag"
+                        android:layout_marginTop="20dp" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                style="@style/subtitle"
+                android:text="@string/sub_light2" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/btn_light2"
+                        style="@style/button"
+                        android:onClick="switchOnOff"
+                        android:text="@string/but_light_on" />
+
+                    <TextView style="@style/arrows"/>
+
+                    <Button
+                        android:id="@+id/btn_light2_state"
+                        style="@style/flag" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                style="@style/subtitle"
+                android:text="@string/sub_heater" />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/btn_heat"
+                        style="@style/button"
+                        android:onClick="switchOnOff"
+                        android:text="@string/but_heat_on" />
+
+                    <TextView/>
+
+                    <Button
+                        android:id="@+id/btn_heat_state"
+                        style="@style/flag" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        style="@style/caption"
+                        android:text="@string/cap_set_tem" />
+
+                    <ImageView
+                        android:id="@+id/arrow_down"
+                        style="@style/arrows"
+                        android:onClick="setTemperature"
+                        app:srcCompat="@android:drawable/arrow_down_float" />
+
+                    <TextView
+                        android:id="@+id/text_set_temp"
+                        style="@style/info"
+                        android:text="20.5"
+                        android:inputType="numberSigned" />
+
+                    <ImageView
+                        android:id="@+id/arrow_up"
+                        style="@style/arrows"
+                        android:onClick="setTemperature"
+                        app:srcCompat="@android:drawable/arrow_up_float" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        style="@style/caption"
+                        android:text="@string/cap_actual_tem" />
+
+                    <TextView/>
+
+                    <TextView
+                        android:id="@+id/text_get_temp"
+                        style="@style/info"
+                        android:text="22.2" />
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:srcCompat="@drawable/logoweeia" />
+
+</RelativeLayout>
